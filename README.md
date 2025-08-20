@@ -1,14 +1,15 @@
-# Projet Pokémon - Base de données SQLite
+# Projet Pokémon ETL
 
-Petit projet en Python pour gérer une base de données de Pokémon avec SQLite.
+## Objectif
+Récupérer des données Pokémon depuis l'API PokéAPI, les transformer en DataFrame et les stocker dans une base SQLite.  
+Ce projet sert d'exemple d'ETL simple en Python.
 
 ## Structure du projet
-├── data/ # Contient la base SQLite (pokemon.db)
-├── notebooks/ # Pour tests et explorations Jupyter (optionnel)
-├── src/ # Code source
-│ └── database.py # Fonctions pour gérer la base
-├── main.py # Point d'entrée du projet
-└── README.md # Documentation
+pokemon_etl/
+├─ data/ # Base SQLite et éventuels CSV
+├─ src/ # Scripts Python
+├─ notebooks/ # Notebooks pour exploration
+├─ README.md
 
 ## Installation
 
@@ -17,9 +18,9 @@ Petit projet en Python pour gérer une base de données de Pokémon avec SQLite.
    git clone <url-du-repo>
    cd <nom-du-dossier>
 2. Créer un environnement virtuel :
-    python -m venv venv
-    source venv/bin/activate  # sous Linux/Mac
-    venv\Scripts\activate     # sous Windows
+    python -m venv venv312
+    source venv312/bin/activate  # sous Linux/Mac
+    venv312\Scripts\activate     # sous Windows
 
 ## Utilisation
 
@@ -30,9 +31,23 @@ Petit projet en Python pour gérer une base de données de Pokémon avec SQLite.
     ```bash
     Pokémons enregistrés :
     (1, 'Pikachu', 'Électrik', 35)
+3. Installation dépendances :
+    ```bash
+    pip install pandas requests
+4. Lancement :
+    ```bash
+    python src/fetch_pokemon.py
 
-## Prochaines améliorations possible :
+## Le script :
+- Récupère les 5 premiers Pokémon depuis l'API
+- Transforme les données en DataFrame
+- Sauvegarde les données dans data/pokemon.db
 
-- Ajouter plus de champs (attaque, défense, vitesse…)
-- Créer une interface utilisateur (console ou web)
-- Charger des données depuis un fichier CSV
+## Résultat :
+- DataFrame affiché dans la console
+- Base SQLite pokemon.db avec table pokemon
+
+## Option :
+Exporter les données en CSV:
+    ```bash
+    df.to_csv('data/pokemon.csv', index=False)
